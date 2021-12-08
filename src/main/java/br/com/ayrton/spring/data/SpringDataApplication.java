@@ -1,5 +1,7 @@
 package br.com.ayrton.spring.data;
 
+import java.util.Scanner;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -7,14 +9,17 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import br.com.ayrton.spring.data.orm.Cargo;
 import br.com.ayrton.spring.data.repository.CargoRepository;
+import br.com.ayrton.spring.data.service.CargoService;
 
 @SpringBootApplication
 public class SpringDataApplication implements CommandLineRunner {
 
-	private final CargoRepository cargoRepository;
+	private final CargoService cargoService;
 
-	public SpringDataApplication(CargoRepository cargoRepository) {
-		this.cargoRepository = cargoRepository;
+	private Boolean system = true;
+
+	public SpringDataApplication(CargoService cargoService) {
+		this.cargoService = cargoService;
 	}
 
 	public static void main(String[] args) {
@@ -23,8 +28,24 @@ public class SpringDataApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		Cargo cargo = new Cargo("DESENVOLVEDOR DE SOFTWARE");
-		cargoRepository.save(cargo);
+		Scanner scanner = new Scanner(System.in);
+
+		while (system) {
+			System.out.println("Qual ação você quer executar: ");
+			System.out.println("0 - Sair");
+			System.out.println("1 - Cargo");
+			
+			int action = scanner.nextInt();
+			
+			if (action == 1) {
+				cargoService.inicial(scanner);
+			}else {
+				system = false;
+				System.out.println("Programa Finalizado");
+			}
+
+		}
+
 	}
 
 }
