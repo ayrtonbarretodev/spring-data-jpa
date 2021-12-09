@@ -1,9 +1,12 @@
 package br.com.ayrton.spring.data.orm;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -14,6 +17,9 @@ public class Cargo {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String descricao;
+
+	@OneToMany(mappedBy = "cargo")
+	private List<Funcionario> funcionarios;
 
 	public Cargo() {
 
@@ -44,11 +50,17 @@ public class Cargo {
 		this.descricao = descricao;
 	}
 
+	public List<Funcionario> getFuncionarios() {
+		return funcionarios;
+	}
+
+	public void setFuncionarios(List<Funcionario> funcionarios) {
+		this.funcionarios = funcionarios;
+	}
+
 	@Override
 	public String toString() {
 		return "Cargo [id=" + id + ", descricao=" + descricao + "]";
 	}
-	
-	
 
 }
