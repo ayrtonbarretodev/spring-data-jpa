@@ -22,6 +22,8 @@ public class CargoService {
 			System.out.println("0 - Sair");
 			System.out.println("1 - Salvar");
 			System.out.println("2 - Atualizar");
+			System.out.println("3 - Visualizar");
+			System.out.println("4 - Deletar");
 
 			int acaoUsuario = scanner.nextInt();
 
@@ -32,7 +34,12 @@ public class CargoService {
 			case 2:
 				atualizar(scanner);
 				break;
-
+			case 3:
+				visualizar();
+				break;
+			case 4:
+				deletar(scanner);
+				break;
 			default:
 				system = false;
 				break;
@@ -58,6 +65,21 @@ public class CargoService {
 
 		Cargo cargo = new Cargo(id, descricao);
 		cargoRepository.save(cargo);
+	}
+
+	private void visualizar() {
+		System.out.println("Lista dos Cargos");
+		
+		Iterable<Cargo> cargos = cargoRepository.findAll();
+		cargos.forEach(cargo -> System.out.println(cargo));
+
+	}
+
+	private void deletar(Scanner scanner) {
+		System.out.println("Digite o id do cargo no qual deseja deletar: ");
+		int id = scanner.nextInt();
+		cargoRepository.deleteById(id);
+		System.out.println("Deletado ...");
 	}
 
 }

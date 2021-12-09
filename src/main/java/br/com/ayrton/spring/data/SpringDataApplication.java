@@ -2,13 +2,10 @@ package br.com.ayrton.spring.data;
 
 import java.util.Scanner;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import br.com.ayrton.spring.data.orm.Cargo;
-import br.com.ayrton.spring.data.repository.CargoRepository;
 import br.com.ayrton.spring.data.service.CargoService;
 
 @SpringBootApplication
