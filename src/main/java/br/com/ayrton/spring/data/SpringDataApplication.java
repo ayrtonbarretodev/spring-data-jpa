@@ -7,6 +7,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import br.com.ayrton.spring.data.service.CargoService;
+import br.com.ayrton.spring.data.service.FuncionarioService;
 import br.com.ayrton.spring.data.service.UnidadeTrabalhoService;
 
 @SpringBootApplication
@@ -15,12 +16,15 @@ public class SpringDataApplication implements CommandLineRunner {
 	private final CargoService cargoService;
 	
 	private final UnidadeTrabalhoService unidadeService;
+	
+	private final FuncionarioService funcionarioService;
 
 	private Boolean system = true;
 
-	public SpringDataApplication(CargoService cargoService,UnidadeTrabalhoService unidadeService) {
+	public SpringDataApplication(CargoService cargoService,UnidadeTrabalhoService unidadeService, FuncionarioService funcionarioService) {
 		this.cargoService = cargoService;
 		this.unidadeService = unidadeService;
+		this.funcionarioService = funcionarioService;
 	}
 
 	public static void main(String[] args) {
@@ -44,7 +48,9 @@ public class SpringDataApplication implements CommandLineRunner {
 				cargoService.inicial(scanner);
 			}else if(action == 2) {
 				unidadeService.inicial(scanner);
-			}else {
+			}else if(action == 3) {
+				funcionarioService.inicial(scanner);
+			} else {
 				system = false;
 				System.out.println("Programa Finalizado");
 			}

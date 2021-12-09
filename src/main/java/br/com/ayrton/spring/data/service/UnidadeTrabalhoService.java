@@ -4,7 +4,6 @@ import java.util.Scanner;
 
 import org.springframework.stereotype.Service;
 
-import br.com.ayrton.spring.data.orm.Cargo;
 import br.com.ayrton.spring.data.orm.Unidade;
 import br.com.ayrton.spring.data.repository.UnidadeTrabalhoRepository;
 
